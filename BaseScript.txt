@@ -11,6 +11,8 @@ lock pin "PH1 - OSC_OUT" false
 set pin "PA0-WKUP" GPIO_EXTI0
 set pin "PA1" ADC1_IN1
 lock pin "PA1" false
+set pin "PA2" ADC1_IN2
+lock pin "PA2" false
 set pin "PA5" TIM2_CH1
 lock pin "PA5" false
 set pin "PA13" SYS_JTMS-SWDIO
@@ -18,6 +20,7 @@ lock pin "PA13" false
 set pin "PA14" SYS_JTCK-SWCLK
 lock pin "PA14" false
 set mode ADC1 "IN1"
+set mode ADC1 "IN2"
 set mode RCC "HSE-External-Oscillator"
 set mode RCC "LSE-External-Oscillator"
 set mode SYS "Serial_Wire"
@@ -25,12 +28,24 @@ set mode SYS "SysTick"
 set mode TIM2 "Internal"
 set mode TIM2 "PWM Generation1 CH1"
 set ip parameters ADC1 "master" "1"
+set ip parameters ADC1 "DMAContinuousRequests" "ENABLE"
 set ip parameters ADC1 "NbrOfConversionFlag" "1"
+set ip parameters ADC1 "NbrOfConversion" "2"
 set ip parameters ADC1 "NbrOfConversionFlag" "1"
+set ip parameters ADC1 "NbrOfConversion" "2"
 set ip parameters ADC1 "Channel-0#ChannelRegularConversion" "ADC_CHANNEL_1"
+set ip parameters ADC1 "NbrOfConversionFlag" "1"
+set ip parameters ADC1 "NbrOfConversion" "2"
+set ip parameters ADC1 "Rank-1#ChannelRegularConversion" "2"
+set ip parameters ADC1 "Channel-1#ChannelRegularConversion" "ADC_CHANNEL_2"
 set ip parameters TIM2 "Prescaler" "3"
 set ip parameters TIM2 "Period" "4095"
 set ip parameters TIM2 "AutoReloadPreload" "TIM_AUTORELOAD_PRELOAD_ENABLE"
+dma add "ADC1"
+dma set_param "ADC1" "Instance" "DMA2_Stream0"
+dma set_param "ADC1" "PeriphDataAlignment" "DMA_PDATAALIGN_WORD"
+dma set_param "ADC1" "MemDataAlignment" "DMA_MDATAALIGN_WORD"
+dma set_param "ADC1" "Mode" "DMA_CIRCULAR"
 NVIC set_prioritygroup 4
 NVIC enable "MemoryManagement_IRQn"
 NVIC set_priority "MemoryManagement_IRQn" 0
@@ -62,6 +77,9 @@ NVIC set_subpriority "ADC_IRQn" 0
 NVIC enable "TIM2_IRQn"
 NVIC set_priority "TIM2_IRQn" 0
 NVIC set_subpriority "TIM2_IRQn" 0
+NVIC enable "DMA2_Stream0_IRQn"
+NVIC set_priority "DMA2_Stream0_IRQn" 0
+NVIC set_subpriority "DMA2_Stream0_IRQn" 0
 set gpio parameters "PC13-ANTI_TAMP" "PinState" "GPIO_PIN_SET"
 set gpio parameters "PC13-ANTI_TAMP" "GPIO_PuPd" "GPIO_NOPULL"
 set gpio parameters "PC13-ANTI_TAMP" "GPIO_Label" "Blue LED"
