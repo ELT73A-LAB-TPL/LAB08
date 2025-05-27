@@ -1,4 +1,4 @@
-# LAB07 template for ELT73A course 
+# LAB08 template for ELT73A course 
 ## Git commands
 How to config git
 ```bash
@@ -15,7 +15,7 @@ git config list --show-origin
 ```
 How to commit updates
 ```bash
-cd LAB07
+cd LAB08
 git status
 git add .
 git commit -m "My message for this commit!"
@@ -24,10 +24,10 @@ git log
 ```
 
 ## LAB steps
-
-Generate code with EXTI0, ADC1 and PWM
+ 
+Generate code with EXTI0, ADC1, PWM and DMA
 ```bash
-LoadMX TIM2EXTI0ADC1PWM TIM2EXTI0ADC1PWM.txt Y
+LoadMX TIM2EXTI0ADC1PWMDMA TIM2EXTI0ADC1PWMDMA.txt Y
 ```
 
 ## Running STM32CubeMX in command-line mode
