@@ -3,9 +3,9 @@ name: CMake Build Test and Release .elf files
 
 on:
   # Triggers the workflow on push to 'main' branch (adjust branch as needed)
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   # Triggers the workflow on manual dispatch (as before)
   workflow_dispatch:
 
