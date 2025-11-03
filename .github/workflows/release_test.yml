@@ -114,9 +114,6 @@ jobs:
           name: elf-build-artifacts
           path: elf-artifacts/
           retention-days: 1 # You can set this higher if needed
-
-  ---
-
   release:
     name: Create GitHub Release
     # Run only if the build job succeeded and a build was actually done
@@ -145,4 +142,3 @@ jobs:
             ./*.elf # Upload all .elf files downloaded in the previous step
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Required for creating the release
-          
