@@ -31,9 +31,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define AVG_SLOPE   2.5f     // mV/°C
-#define V_AT_25C    0.76f    // Volts
-#define V_REF_INT   1.21f    // Internal reference voltage
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -102,14 +100,15 @@ int main(void)
   MX_ADC1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-HAL_TIM_PWM_Start_IT(&htim2,TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start_IT(&htim2,TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-       if (BLUELED)
+    // Verify BLUELED Flag
+    if (BLUELED)
       HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_RESET); // LED ON
     else
       HAL_GPIO_WritePin(GPIOC, GPIO_PIN_13, GPIO_PIN_SET); // LED OFF
